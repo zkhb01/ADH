@@ -11,6 +11,8 @@
 	[DeletedTimestamp] [datetime] NULL,
 	[TxCount] [int] NULL,
 	[Category] [varchar](255) NULL,
-	[SecurityLevel] [int] NULL
-) ON [PRIMARY]
+	[SecurityLevel] [int] NULL,
+	[Discriminator] [varchar](255) NULL,
+	CONSTRAINT [PK_Entity] PRIMARY KEY (Id),
+)
 GO

@@ -1,55 +1,47 @@
 ﻿-- StudentPersonal table with student-specific data and 1-to-1 link to PersonInfo
 CREATE TABLE sif.StudentPersonal (
-    RefId UNIQUEIDENTIFIER NOT NULL,
-    PersonInfoRefId UNIQUEIDENTIFIER NOT NULL UNIQUE, -- 1-to-1 relationship
-    StateProvinceId NVARCHAR(50) NULL, -- StateProvinceIdType
+    Id UNIQUEIDENTIFIER NOT NULL,
+    PersonInfoId UNIQUEIDENTIFIER NOT NULL UNIQUE, -- 1-to-1 relationship
+    StateAssignedId NVARCHAR(50) NULL, -- StateProvinceIdType
     ProjectedGraduationYear NVARCHAR(4) NULL, -- ProjectedGraduationYearType
     OnTimeGraduationYear NVARCHAR(4) NULL, -- OnTimeGraduationYearType
     GraduationDate DATE NULL, -- GraduationDateType
     MostRecent NVARCHAR(MAX) NULL, -- StudentMostRecentContainerType (complex type, single instance)
-    AcceptableUsePolicy NVARCHAR(50) NULL, -- xs:token
-    AcceptableUsePolicy_Codeset NVARCHAR(255) NULL, -- xs:token
-    IDEA NVARCHAR(50) NULL, -- xs:token
-    IDEA_Codeset NVARCHAR(255) NULL, -- xs:token
-    Migrant NVARCHAR(50) NULL, -- xs:token
-    Migrant_Codeset NVARCHAR(255) NULL, -- xs:token
-    Title1 NVARCHAR(50) NULL, -- xs:token
-    Title1_Codeset NVARCHAR(255) NULL, -- xs:token
-    GiftedTalented NVARCHAR(50) NULL, -- xs:token
-    GiftedTalented_Codeset NVARCHAR(255) NULL, -- xs:token
-    EconomicDisadvantage NVARCHAR(50) NULL, -- xs:token
-    EconomicDisadvantage_Codeset NVARCHAR(255) NULL, -- xs:token
-    ELL NVARCHAR(50) NULL, -- xs:token
-    ELL_Codeset NVARCHAR(255) NULL, -- xs:token
-    Homeless NVARCHAR(50) NULL, -- xs:token
-    Homeless_Codeset NVARCHAR(255) NULL, -- xs:token
-    Section504 NVARCHAR(50) NULL, -- xs:token
-    Section504_Codeset NVARCHAR(255) NULL, -- xs:token
-    VocationalConcentrator NVARCHAR(50) NULL, -- xs:token
-    VocationalConcentrator_Codeset NVARCHAR(255) NULL, -- xs:token
-    Immigrant NVARCHAR(50) NULL, -- xs:token
-    Immigrant_Codeset NVARCHAR(255) NULL, -- xs:token
-    NeglectedDelinquent NVARCHAR(50) NULL, -- xs:token
-    NeglectedDelinquent_Codeset NVARCHAR(255) NULL, -- xs:token
+    AcceptableUsePolicyCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    IDEACodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    MigrantCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    Title1CodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    GiftedTalentedCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    EconomicDisadvantageCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    ELLCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    HomelessCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    Section504CodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    VocationalConcentratorCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    ImmigrantCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
+    NeglectedDelinquentCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
     FirstUSEnrollment DATE NULL, -- xs:date
     SIF_Metadata NVARCHAR(MAX) NULL, -- SIF_MetadataType (complex type, single instance)
     SIF_ExtendedElements NVARCHAR(MAX) NULL, -- SIF_ExtendedElementsType (complex type, single instance)
-    CONSTRAINT PK_StudentPersonal PRIMARY KEY (RefId),
-    CONSTRAINT FK_StudentPersonal_PersonInfo FOREIGN KEY (PersonInfoRefId) 
-        REFERENCES sif.PersonInfo(RefId) ON DELETE CASCADE
+    CONSTRAINT [PK_StudentPersonal] PRIMARY KEY (Id),
+    CONSTRAINT [BK_StudentPersonal] UNIQUE (PersonInfoId),
+    CONSTRAINT [FK_StudentPersonal_Entity] FOREIGN KEY (Id) REFERENCES dbo.Entity(Id),
+    CONSTRAINT [FK_StudentPersonal_PersonInfo] FOREIGN KEY (PersonInfoId) REFERENCES sif.PersonInfo([Id]),
+    CONSTRAINT [FK_StudentPersonal_AcceptableUsePolicyCodeItem] FOREIGN KEY (AcceptableUsePolicyCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_IDEACodeItem] FOREIGN KEY (IDEACodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_MigrantCodeItem] FOREIGN KEY (MigrantCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_Title1CodeItem] FOREIGN KEY (Title1CodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_GiftedTalentedCodeItem] FOREIGN KEY (GiftedTalentedCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_EconomicDisadvantageCodeItem] FOREIGN KEY (EconomicDisadvantageCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_ELLCodeItem] FOREIGN KEY (ELLCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_HomelessCodeItem] FOREIGN KEY (HomelessCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_Section504CodeItem] FOREIGN KEY (Section504CodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_VocationalConcentratorCodeItem] FOREIGN KEY (VocationalConcentratorCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_ImmigrantCodeItem] FOREIGN KEY (ImmigrantCodeItemId) REFERENCES sif.CodeItem([Id]),
+    CONSTRAINT [FK_StudentPersonal_NeglectedDelinquentCodeItem] FOREIGN KEY (NeglectedDelinquentCodeItemId) REFERENCES sif.CodeItem([Id]),
 );
 GO
 
--- ElectronicIdList table (1-to-many with StudentPersonal)
-CREATE TABLE StudentElectronicIds (
-    ElectronicId INT IDENTITY(1,1) NOT NULL,
-    StudentRefId UNIQUEIDENTIFIER NOT NULL,
-    ElectronicIdentifier NVARCHAR(50) NOT NULL, -- Simplified representation of ElectronicIdListType
-    CONSTRAINT PK_StudentElectronicIds PRIMARY KEY (ElectronicId),
-    CONSTRAINT FK_StudentElectronicIds_StudentPersonal FOREIGN KEY (StudentRefId) 
-        REFERENCES sif.StudentPersonal(RefId) ON DELETE CASCADE
-);
-GO
+
 
 -- Extended Properties for StudentPersonal Table
 EXEC sys.sp_addextendedproperty 
@@ -64,7 +56,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'The GUID of the student.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'RefId';
+    @level2type = N'COLUMN', @level2name = N'Id';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -72,7 +64,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'Reference to the associated PersonInfo record.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'PersonInfoRefId';
+    @level2type = N'COLUMN', @level2name = N'PersonInfoId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -80,7 +72,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'The state-assigned identifier for this student.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'StateProvinceId';
+    @level2type = N'COLUMN', @level2name = N'StateAssignedId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -120,7 +112,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'Does the student have a current signed Acceptable Use Policy document for system access?', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'AcceptableUsePolicy';
+    @level2type = N'COLUMN', @level2name = N'AcceptableUsePolicyCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -128,7 +120,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'AcceptableUsePolicy_Codeset';
+    @level2type = N'COLUMN', @level2name = N'IDEACodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -136,7 +128,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'IDEA_Codeset';
+    @level2type = N'COLUMN', @level2name = N'MigrantCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -144,7 +136,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'Migrant_Codeset';
+    @level2type = N'COLUMN', @level2name = N'Title1CodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -152,7 +144,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'Title1_Codeset';
+    @level2type = N'COLUMN', @level2name = N'GiftedTalentedCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -160,7 +152,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'GiftedTalented_Codeset';
+    @level2type = N'COLUMN', @level2name = N'EconomicDisadvantageCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -168,7 +160,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'EconomicDisadvantage_Codeset';
+    @level2type = N'COLUMN', @level2name = N'ELLCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -176,7 +168,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'ELL_Codeset';
+    @level2type = N'COLUMN', @level2name = N'HomelessCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -184,7 +176,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'Homeless_Codeset';
+    @level2type = N'COLUMN', @level2name = N'Section504CodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -192,7 +184,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'Section504_Codeset';
+    @level2type = N'COLUMN', @level2name = N'VocationalConcentratorCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -200,7 +192,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'VocationalConcentrator_Codeset';
+    @level2type = N'COLUMN', @level2name = N'ImmigrantCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -208,15 +200,7 @@ EXEC sys.sp_addextendedproperty
     @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'Immigrant_Codeset';
-GO
-
-EXEC sys.sp_addextendedproperty 
-    @name = N'MS_Description', 
-    @value = N'A unique indicator (usually a URL) that points to the codeset used.', 
-    @level0type = N'SCHEMA', @level0name = N'sif', 
-    @level1type = N'TABLE', @level1name = N'StudentPersonal', 
-    @level2type = N'COLUMN', @level2name = N'NeglectedDelinquent_Codeset';
+    @level2type = N'COLUMN', @level2name = N'NeglectedDelinquentCodeItemId';
 GO
 
 EXEC sys.sp_addextendedproperty 
