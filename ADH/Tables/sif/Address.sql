@@ -19,8 +19,9 @@ CREATE TABLE sif.Address (
     PostalCode NVARCHAR(20) NOT NULL,
     Latitude DECIMAL(9,6) NULL,
     Longitude DECIMAL(10,6) NULL,
-    LastValidated DATETIME NULL, 
-    [LastValidatedBy] NVARCHAR(100) NULL, 
+    [ValidatedOn] DATETIME NULL, 
+    [ValidatedBy] NVARCHAR(100) NULL, 
+    [ValidationServiceUsed] NVARCHAR(255) NULL, 
     CONSTRAINT [PK_Adderss] PRIMARY KEY (Id),
 	CONSTRAINT [FK_Address_Entity] FOREIGN KEY (Id) REFERENCES dbo.Entity(Id),
 );
@@ -184,7 +185,7 @@ EXEC sys.sp_addextendedproperty
     @value=N'KHB - The timestamp of the last time this address was validated against an Adress-Validation service', 
     @level0type=N'SCHEMA', @level0name=N'sif', 
     @level1type=N'TABLE', @level1name=N'Address', 
-    @level2type=N'COLUMN', @level2name=N'LastValidated';
+    @level2type=N'COLUMN', @level2name=N'ValidatedOn';
 GO
 
 EXEC sys.sp_addextendedproperty 
@@ -192,5 +193,13 @@ EXEC sys.sp_addextendedproperty
     @value=N'KHB - The signed-in user that validated the address against an Adress-Validation service', 
     @level0type=N'SCHEMA', @level0name=N'sif', 
     @level1type=N'TABLE', @level1name=N'Address', 
-    @level2type=N'COLUMN', @level2name=N'LastValidatedBy';
+    @level2type=N'COLUMN', @level2name=N'ValidatedBy';
+GO
+
+EXEC sys.sp_addextendedproperty 
+    @name=N'MS_Description', 
+    @value=N'KHB - The service used to validated the address', 
+    @level0type=N'SCHEMA', @level0name=N'sif', 
+    @level1type=N'TABLE', @level1name=N'Address', 
+    @level2type=N'COLUMN', @level2name=N'ValidationServiceUsed';
 GO
