@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ADH</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ee22a616-7a5e-4b35-9f24-80a0aaf87d4c}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ADH</RootNamespace>
+    <AssemblyName>ADH</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Schemas" />
+    <Folder Include="Views" />
+    <Folder Include="Tables\lctn" />
+    <Folder Include="Tables\sif" />
+    <Folder Include="Tables\stf" />
+    <Folder Include="Views\stf" />
+    <Folder Include="Tables\dbo" />
+    <Folder Include="Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\sif.sql" />
+    <Build Include="Schemas\stf.sql" />
+    <Build Include="Schemas\lctn.sql" />
+    <Build Include="Schemas\schl.sql" />
+    <Build Include="Tables\lctn\Address.sql" />
+    <Build Include="Tables\lctn\Street.sql" />
+    <Build Include="Tables\lctn\Location.sql" />
+    <Build Include="Tables\stf\Staff.sql" />
+    <Build Include="Tables\stf\StaffJob.sql" />
+    <Build Include="Tables\stf\AssignmentType.sql" />
+    <Build Include="Tables\stf\Job.sql" />
+    <Build Include="Tables\stf\JobCategory.sql" />
+    <Build Include="Tables\stf\JobType.sql" />
+    <Build Include="Views\stf\StaffDetails.sql" />
+    <Build Include="Tables\dbo\Entity.sql" />
+    <Build Include="Tables\lctn\School.sql" />
+    <Build Include="Tables\sif\StudentContactPersonal.sql" />
+    <Build Include="Tables\sif\StudentContactRelationship.sql" />
+    <Build Include="Tables\sif\StudentPersonal.sql" />
+    <Build Include="Tables\sif\StudentPersonal_AlertMessages.sql" />
+    <Build Include="Tables\sif\StudentPersonal_MedicalAlertMessages.sql" />
+    <Build Include="Tables\sif\StudentPersonal_RaceList.sql" />
+    <Build Include="Tables\sif\StudentPersonal_CountriesOfCitizenship.sql" />
+    <Build Include="Tables\sif\StudentPersonal_CountriesOfResidency.sql" />
+    <Build Include="Tables\sif\StudentPersonal_LanguageList.sql" />
+    <Build Include="Tables\sif\PersonInfo.sql" />
+    <Build Include="Tables\sif\PersonInfo_OtherIdList.sql" />
+    <Build Include="Tables\sif\PersonInfo_OtherNames.sql" />
+    <Build Include="Tables\sif\PersonInfo_AddressList.sql" />
+    <Build Include="Tables\sif\PersonInfo_PhoneNumberList.sql" />
+    <Build Include="Tables\sif\PersonInfo_EmailList.sql" />
+    <Build Include="Tables\sif\PersonInfo_RaceList.sql" />
+    <Build Include="Tables\sif\PersonInfo_CountriesOfCitizenship.sql" />
+    <Build Include="Tables\sif\PersonInfo_CountriesOfResidency.sql" />
+    <Build Include="Tables\sif\PersonInfo_LanguageList.sql" />
+    <Build Include="Tables\sif\PersonInfo_EnglishProficiency_OtherCodeList.sql" />
+    <Build Include="Tables\sif\CodeItem.sql" />
+    <Build Include="Tables\sif\CodeSet.sql" />
+    <Build Include="Tables\dbo\CodeSet.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ADH.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\CopyCodeItemFromDboToSif.sql" />
+    <None Include="Scripts\PullCodeSetFromPS.sql" />
+  </ItemGroup>
+</Project>

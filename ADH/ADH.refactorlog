@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7b9c6527-717f-41ed-be2a-53c563d46ca8" ChangeDateTime="02/09/2025 00:57:32">
+    <Property Name="ElementName" Value="[dbo].[StudentContactAddress].[StudentContactId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[StudentContactAddress]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PersonId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b01f1cd3-a11d-4482-ba63-504b312aa7f0" ChangeDateTime="02/09/2025 00:58:02">
+    <Property Name="ElementName" Value="[dbo].[StudentContactEmail].[StudentContactId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[StudentContactEmail]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PersonId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3657d4c8-0d61-44d6-8f7b-922d11af05fe" ChangeDateTime="02/09/2025 00:58:15">
+    <Property Name="ElementName" Value="[dbo].[StudentContactEmail].[AddressId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[StudentContactEmail]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Email" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2f77ba55-e801-4db1-bf5e-c1a174bb6c1e" ChangeDateTime="02/09/2025 01:09:49">
+    <Property Name="ElementName" Value="[stdnt].[StudentContact].[TypeCodeSetId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[stdnt].[StudentContact]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RelationshipTypeCodeSetId" />
+  </Operation>
+</Operations>
