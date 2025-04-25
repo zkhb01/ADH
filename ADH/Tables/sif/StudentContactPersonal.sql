@@ -6,7 +6,7 @@ CREATE TABLE sif.StudentContactPersonal (
     EducationLevel NVARCHAR(50) NULL, -- EducationalLevelType (simplified as string)
     OptOutEmailCodeItemId UNIQUEIDENTIFIER, -- xs:token (URL or identifier)
     SIF_Metadata NVARCHAR(MAX) NULL, -- SIF_MetadataType (complex type)
-    SIF_ExtendedElements NVARCHAR(MAX) NULL, -- SIF_ExtendedElementsType (complex type)
+    SIF_ExtendedElement NVARCHAR(MAX) NULL, -- SIF_ExtendedElementsType (complex type)
     CONSTRAINT [PK_StudentContactPersonal] PRIMARY KEY (Id),
     CONSTRAINT [BK_StudentContactPersonal] UNIQUE (PersonInfoId, EmployerTypeCodeItemId),
     CONSTRAINT [FK_StudentContactPersonal_Entity] FOREIGN KEY (Id) REFERENCES dbo.Entity(Id),
@@ -78,5 +78,5 @@ EXEC sys.sp_addextendedproperty
     @value = N'SIF extended elements for additional student contact data.', 
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentContactPersonal', 
-    @level2type = N'COLUMN', @level2name = N'SIF_ExtendedElements';
+    @level2type = N'COLUMN', @level2name = N'SIF_ExtendedElement';
 GO

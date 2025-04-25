@@ -35,4 +35,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="d62ee667-f3fb-4909-a35f-4a4c96d8b43a" ChangeDateTime="04/25/2025 14:25:45">
+    <Property Name="ElementName" Value="[sif].[StudentContactPersonal].[SIF_ExtendedElements]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[sif].[StudentContactPersonal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SIF_ExtendedElement" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7eab6d07-7769-4094-b574-b2677c32593a" ChangeDateTime="04/25/2025 14:35:55">
+    <Property Name="ElementName" Value="[sif].[StudentContactRelationship].[RelationshipNotes]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[sif].[StudentContactRelationship]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RelationshipNote" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4834079e-81b6-443d-a388-3a388ac43f7d" ChangeDateTime="04/25/2025 14:36:13">
+    <Property Name="ElementName" Value="[sif].[StudentContactRelationship].[PickupRights]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[sif].[StudentContactRelationship]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PickupRight" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9dc944f2-5d62-45ed-94c8-8db27b2276ae" ChangeDateTime="04/25/2025 14:42:32">
+    <Property Name="ElementName" Value="[sif].[StudentPersonal].[SIF_ExtendedElements]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[sif].[StudentPersonal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SIF_ExtendedElement" />
+  </Operation>
 </Operations>

@@ -6,12 +6,12 @@
     ContactSequence INT NULL,
     ParentLegalGuardian BIT NOT NULL DEFAULT 0,
     HasCustody BIT NOT NULL DEFAULT 0,
-    PickupRights BIT NOT NULL DEFAULT 0,
+    PickupRight BIT NOT NULL DEFAULT 0,
     ReceivesMail BIT NOT NULL DEFAULT 0,
     LivesWith BIT NOT NULL DEFAULT 0,
     EmergencyContact BIT NOT NULL DEFAULT 0,
     KeepContactInfoPrivate_Other BIT NOT NULL DEFAULT 0,
-    RelationshipNotes NVARCHAR(4000) NULL,
+    RelationshipNote NVARCHAR(4000) NULL,
     CONSTRAINT [PK_StudentContactRelationship] PRIMARY KEY (Id),
     CONSTRAINT [BK_StudentContactRelationship] UNIQUE (StudentPersonalId, StudentContactPersonalId),
     CONSTRAINT [FK_StudentContactRelationship_Entity] FOREIGN KEY (Id) REFERENCES dbo.Entity(Id),
@@ -21,7 +21,7 @@
     CONSTRAINT [CHK_StudentContactRelationship_ContactFlags] CHECK (
         ParentLegalGuardian = 1 OR 
         HasCustody = 1 OR 
-        PickupRights = 1 OR 
+        PickupRight = 1 OR 
         ReceivesMail = 1 OR
         LivesWith = 1 OR
         EmergencyContact = 1 OR
@@ -97,7 +97,7 @@ EXEC sys.sp_addextendedproperty
     @value=N'Part of ContactFlags: Indicates if the contact has pickup rights (Yes = 1, No = 0).', 
     @level0type=N'SCHEMA', @level0name=N'sif', 
     @level1type=N'TABLE', @level1name=N'StudentContactRelationship', 
-    @level2type=N'COLUMN', @level2name=N'PickupRights';
+    @level2type=N'COLUMN', @level2name='PickupRight';
 GO
 EXEC sys.sp_addextendedproperty 
     @name=N'MS_Description', 
@@ -132,5 +132,5 @@ EXEC sys.sp_addextendedproperty
     @value=N'Comes from PowerSchool and provides note relating to this relationship.', 
     @level0type=N'SCHEMA', @level0name=N'sif', 
     @level1type=N'TABLE', @level1name=N'StudentContactRelationship', 
-    @level2type=N'COLUMN', @level2name=N'RelationshipNotes';
+    @level2type=N'COLUMN', @level2name='RelationshipNote';
 GO

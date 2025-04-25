@@ -21,7 +21,7 @@ CREATE TABLE sif.StudentPersonal (
     NeglectedDelinquentCodeItemId UNIQUEIDENTIFIER NULL, -- xs:token
     FirstUSEnrollment DATE NULL, -- xs:date
     SIF_Metadata NVARCHAR(MAX) NULL, -- SIF_MetadataType (complex type, single instance)
-    SIF_ExtendedElements NVARCHAR(MAX) NULL, -- SIF_ExtendedElementsType (complex type, single instance)
+    [SIF_ExtendedElement] NVARCHAR(MAX) NULL, -- SIF_ExtendedElementsType (complex type, single instance)
     CONSTRAINT [PK_StudentPersonal] PRIMARY KEY (Id),
     CONSTRAINT [BK_StudentPersonal] UNIQUE (PersonInfoId),
     CONSTRAINT [FK_StudentPersonal_Entity] FOREIGN KEY (Id) REFERENCES dbo.Entity(Id),
@@ -209,4 +209,20 @@ EXEC sys.sp_addextendedproperty
     @level0type = N'SCHEMA', @level0name = N'sif', 
     @level1type = N'TABLE', @level1name = N'StudentPersonal', 
     @level2type = N'COLUMN', @level2name = N'FirstUSEnrollment';
+GO
+
+EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description', 
+    @value = N'SIF metadata associated with the student.', 
+    @level0type = N'SCHEMA', @level0name = N'sif', 
+    @level1type = N'TABLE', @level1name = N'StudentPersonal', 
+    @level2type = N'COLUMN', @level2name = N'SIF_Metadata';
+GO
+
+EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description', 
+    @value = N'SIF extended elements for additional student data.', 
+    @level0type = N'SCHEMA', @level0name = N'sif', 
+    @level1type = N'TABLE', @level1name = N'StudentPersonal', 
+    @level2type = N'COLUMN', @level2name = 'SIF_ExtendedElement';
 GO

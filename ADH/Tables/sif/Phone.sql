@@ -1,6 +1,6 @@
 ﻿-- Create the table
 CREATE TABLE sif.Phone (
-    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), -- The GUID of this person (implied for SIF objects).
+    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
     [Number] NVARCHAR(20) NOT NULL,
     [Extension] NVARCHAR(20) NULL, 
     [TypeCodeItemId] UNIQUEIDENTIFIER NOT NULL, -- e.g., 'Home', 'Mobile'

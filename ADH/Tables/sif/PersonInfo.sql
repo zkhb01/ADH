@@ -20,7 +20,7 @@ CREATE TABLE sif.PersonInfo (
     EnglishProficiencyCodeItemId UNIQUEIDENTIFIER NULL,         -- Person's proficiency in English (xs:token from EnglishProficiencyType).
     --CreatedDate DATETIME DEFAULT GETDATE(),
     --LastModifiedDate DATETIME DEFAULT GETDATE(),
-    [EXCLUDEFROMSTATEREPORTING] BIT NULL, 
+    ExcludeFromStateReporting BIT NULL, 
     -- Constraints
     CONSTRAINT CHK_PersonInfo_Name CHECK (FirstName <> '' AND LastName <> ''),
    	CONSTRAINT FK_PersonInfo_Entity FOREIGN KEY (Id) REFERENCES dbo.Entity(Id),
@@ -183,5 +183,5 @@ EXEC sys.sp_addextendedproperty
     @value=N'KHB - Carry over from PowerSchool, will need to determine how this is set', 
     @level0type=N'SCHEMA', @level0name=N'sif', 
     @level1type=N'TABLE', @level1name=N'PersonInfo', 
-    @level2type=N'COLUMN', @level2name=N'EXCLUDEFROMSTATEREPORTING';
+    @level2type=N'COLUMN', @level2name=N'ExcludeFromStateReporting';
 GO
