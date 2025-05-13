@@ -65,6 +65,8 @@
     <Folder Include="Views\stf" />
     <Folder Include="Tables\dbo" />
     <Folder Include="Scripts" />
+    <Folder Include="Triggers" />
+    <Folder Include="Triggers\dbo" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\sif.sql" />
@@ -107,6 +109,8 @@
     <Build Include="Schemas\stdnt.sql" />
     <Build Include="Tables\sif\Phone.sql" />
     <Build Include="Tables\sif\Email.sql" />
+    <Build Include="Tables\dbo\ChangeEvent.sql" />
+    <Build Include="Scripts\GenChangeTriggersBySchema.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ADH.refactorlog" />
@@ -114,5 +118,6 @@
   <ItemGroup>
     <None Include="Scripts\CopyCodeItemFromDboToSif.sql" />
     <None Include="Scripts\PullCodeSetFromPS.sql" />
+    <None Include="Triggers\dbo\StaffJobModified.sql" />
   </ItemGroup>
 </Project>
