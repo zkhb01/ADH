@@ -67,6 +67,7 @@
     <Folder Include="Scripts" />
     <Folder Include="Triggers" />
     <Folder Include="Triggers\dbo" />
+    <Folder Include="StoredProcs" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\sif.sql" />
@@ -109,6 +110,7 @@
     <Build Include="Schemas\stdnt.sql" />
     <Build Include="Tables\sif\Phone.sql" />
     <Build Include="Tables\sif\Email.sql" />
+    <Build Include="StoredProcs\StudentUpdate.sql" />
     <Build Include="Tables\dbo\ChangeEvent.sql" />
     <Build Include="Scripts\GenChangeTriggersBySchema.sql" />
   </ItemGroup>
@@ -119,5 +121,6 @@
     <None Include="Scripts\CopyCodeItemFromDboToSif.sql" />
     <None Include="Scripts\PullCodeSetFromPS.sql" />
     <None Include="Triggers\dbo\StaffJobModified.sql" />
+    <None Include="Scripts\ADH-PsOracle-Mapping.sql" />
   </ItemGroup>
 </Project>
