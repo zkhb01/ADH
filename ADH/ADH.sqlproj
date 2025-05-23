@@ -9,8 +9,7 @@
     <ProjectGuid>{ee22a616-7a5e-4b35-9f24-80a0aaf87d4c}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>ADH</RootNamespace>
     <AssemblyName>ADH</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
@@ -48,7 +47,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -68,6 +66,7 @@
     <Folder Include="Triggers" />
     <Folder Include="Triggers\dbo" />
     <Folder Include="StoredProcs" />
+    <Folder Include="JsonData" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\sif.sql" />
@@ -113,6 +112,7 @@
     <Build Include="StoredProcs\StudentUpdate.sql" />
     <Build Include="Tables\dbo\ChangeEvent.sql" />
     <Build Include="Scripts\GenChangeTriggersBySchema.sql" />
+    <Build Include="Tables\sif\StudentTransportationInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ADH.refactorlog" />
@@ -122,5 +122,7 @@
     <None Include="Scripts\PullCodeSetFromPS.sql" />
     <None Include="Triggers\dbo\StaffJobModified.sql" />
     <None Include="Scripts\ADH-PsOracle-Mapping.sql" />
+    <None Include="Scripts\Enable-CDC-on-ADH.sql" />
+    <None Include="JsonData\StudentTransportationInfo.json" />
   </ItemGroup>
 </Project>

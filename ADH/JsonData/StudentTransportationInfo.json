@@ -1,0 +1,57 @@
+{
+    "StudentTransportInfo": {
+        "RefId": "D3E34B359D75101A8C3D00AA001A1652",
+        "StudentPersonalRefId": "C2F23F450B86234B9B3D00AA001A1652",
+        "Type": "Inbound",
+        "DayOfWeek": "MoWeFr",
+        "SchoolInfoRefId": "B7A34E561C97345C0A4E11BB112B2753",
+        "Eligibility": {
+            "value": "Bus"
+        },
+        "HomeToSchoolDistance": {
+            "Unit": "m",
+            "value": 2.4
+        },
+        "WalkToStopDistance": {
+            "Unit": "m",
+            "value": 0.4
+        },
+        "StopToSchoolDistance": {
+            "Unit": "m",
+            "value": 2.0
+        },
+        "OriginPoint": {
+            "BusRouteDetailRefId": "AAE34B359D75101A8C3D00AA001A1652",
+            "ArrivalTime": "09:10:00",
+            "RouteNumber": "134A",
+            "RouteDescription": "RiverFront",
+            "VehicleNumber": "16",
+            "BusStopDescription": "Elm St @ Pine Ave"
+        },
+        "HomeBusRouteDetail": {
+            "SIF_RefObject": "BusRouteDetail",
+            "value": "A3B7564E971C5C344E0ABB11EE272B53"
+        },
+        "SchoolBusRouteDetail": {
+            "SIF_RefObject": "BusRouteDetail",
+            "value": "7B3AE465C17943C5A0E411BB11B27235"
+        },
+        "DestinationPoint": {
+            "BusRouteDetailRefId": "AAE34B359D75101A8C3D00AA001A1652",
+            "ArrivalTime": "09:31:00",
+            "RouteNumber": "134P",
+            "RouteDescription": "RiverFront",
+            "VehicleNumber": "16",
+            "BusStopDescription": "George Washington Elementary West"
+        },
+        "StateAidQualification": {
+            "value": "2065"
+        },
+        "TransportationStatus": {
+            "value": "2060"
+        },
+        "PublicExpense": {
+            "value": "2068"
+        }
+    }
+}
